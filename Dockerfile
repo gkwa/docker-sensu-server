@@ -53,10 +53,6 @@ RUN wget http://peak.telecommunity.com/dist/ez_setup.py;python ez_setup.py
 RUN easy_install supervisor
 ADD files/supervisord.conf /etc/supervisord.conf
 
-RUN /etc/init.d/sshd start
-RUN /etc/init.d/sshd stop
-
-EXPOSE 22
 EXPOSE 3000
 EXPOSE 5671
 EXPOSE 15672
