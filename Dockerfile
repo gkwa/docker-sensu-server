@@ -1,6 +1,6 @@
 FROM centos:centos6
 
-MAINTAINER Hiroaki Sano <hiroaki.sano.9stories@gmail.com>
+MAINTAINER Taylor Monacelli <tailor@uw.edu>
 
 # Basic packages
 RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
