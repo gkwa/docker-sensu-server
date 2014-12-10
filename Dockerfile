@@ -2,6 +2,10 @@ FROM centos:centos6
 
 MAINTAINER Taylor Monacelli <tailor@uw.edu>
 
+# Set correct environment variables.
+ENV HOME /root
+ENV TERM xterm
+
 # Basic packages
 RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 RUN yum install -y passwd
@@ -22,11 +26,11 @@ RUN cd /usr/local/src && wget --timestamping http://ftp.gnu.org/pub/gnu/emacs/em
 RUN cd /usr/local/src && tar xzvf emacs-24.3.tar.gz
 RUN cd /usr/local/src && cd emacs-24.3 && ./configure --without-x --without-selinux && make && make install
 
-RUN cd /root && git init && git remote add origin https://github.com/taylormonacelli/dotfiles.git && git fetch && git checkout -f -t origin/master
+RUN cd && git init && git remote add origin https://github.com/taylormonacelli/dotfiles.git && git fetch && git checkout -f -t origin/master
 # CentOS is bundled with git v1.7 which can't deal with [push] default = simple
-RUN cd /root && sed -i.bak 's,\(.*=.*simple\),#\1,' .gitconfig
+RUN cd && sed -i.bak 's,\(.*=.*simple\),#\1,' .gitconfig
 
-RUN TERM=xterm && HOME=/root emacs --daemon
+RUN emacs --daemon
 
 # Create user
 RUN useradd hiroakis
