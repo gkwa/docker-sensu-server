@@ -23,6 +23,9 @@ RUN cd /usr/local/src && tar xzvf emacs-24.3.tar.gz
 RUN cd /usr/local/src && cd emacs-24.3 && ./configure --without-x --without-selinux && make && make install
 
 RUN cd / && echo $PWD && git init && git remote add origin https://github.com/taylormonacelli/dotfiles.git && git fetch && git checkout -f -t origin/master
+# CentOS is bundled with git v1.7 which can't deal with [push] default = simple
+RUN cd / && sed -i.bak 's,\(.*=.*simple\),#\1,' .gitconfig
+
 # Create user
 RUN useradd hiroakis
 RUN echo "hiroakis" | passwd hiroakis --stdin
