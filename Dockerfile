@@ -22,6 +22,7 @@ RUN cd /usr/local/src && wget --timestamping http://ftp.gnu.org/pub/gnu/emacs/em
 RUN cd /usr/local/src && tar xzvf emacs-24.3.tar.gz
 RUN cd /usr/local/src && cd emacs-24.3 && ./configure --without-x --without-selinux && make && make install
 
+RUN cd / && echo $PWD && git init && git remote add origin https://github.com/taylormonacelli/dotfiles.git && git fetch && git checkout -f -t origin/master
 # Create user
 RUN useradd hiroakis
 RUN echo "hiroakis" | passwd hiroakis --stdin
