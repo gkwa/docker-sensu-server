@@ -13,6 +13,15 @@ RUN yum install -y openssh
 RUN yum install -y openssh-server
 RUN yum install -y openssh-clients
 
+# I'm hopelessly stuck on emacs v24 for helm and melpa in general
+RUN yum install -y wget
+RUN yum install -y tar
+RUN yum install -y gcc make ncurses-devel
+RUN yum install -y giflib-devel libjpeg-devel libtiff-devel
+RUN cd /usr/local/src && wget --timestamping http://ftp.gnu.org/pub/gnu/emacs/emacs-24.3.tar.gz
+RUN cd /usr/local/src && tar xzvf emacs-24.3.tar.gz
+RUN cd /usr/local/src && cd emacs-24.3 && ./configure --without-x --without-selinux && make && make install
+
 # Create user
 RUN useradd hiroakis
 RUN echo "hiroakis" | passwd hiroakis --stdin
