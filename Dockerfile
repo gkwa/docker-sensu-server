@@ -1,6 +1,6 @@
 FROM centos:centos6
 
-MAINTAINER Hiroaki Sano <hiroaki.sano.9stories@gmail.com>
+MAINTAINER Taylor Monacelli <tailor@uw.edu>
 
 # Basic packages
 RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
@@ -12,6 +12,19 @@ RUN yum install -y openssl
 RUN yum install -y openssh
 RUN yum install -y openssh-server
 RUN yum install -y openssh-clients
+
+# I'm hopelessly stuck on emacs v24 for helm and melpa in general
+RUN yum install -y wget
+RUN yum install -y tar
+RUN yum install -y gcc make ncurses-devel
+RUN yum install -y giflib-devel libjpeg-devel libtiff-devel
+RUN cd /usr/local/src && wget --timestamping http://ftp.gnu.org/pub/gnu/emacs/emacs-24.3.tar.gz
+RUN cd /usr/local/src && tar xzvf emacs-24.3.tar.gz
+RUN cd /usr/local/src && cd emacs-24.3 && ./configure --without-x --without-selinux && make && make install
+
+RUN cd / && echo $PWD && git init && git remote add origin https://github.com/taylormonacelli/dotfiles.git && git fetch && git checkout -f -t origin/master
+# CentOS is bundled with git v1.7 which can't deal with [push] default = simple
+RUN cd / && sed -i.bak 's,\(.*=.*simple\),#\1,' .gitconfig
 
 # Create user
 RUN useradd hiroakis
