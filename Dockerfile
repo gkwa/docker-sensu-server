@@ -71,6 +71,9 @@ ADD files/supervisord.conf /etc/supervisord.conf
 RUN /etc/init.d/sshd start
 RUN /etc/init.d/sshd stop
 
+RUN chkconfig sensu-server on
+RUN chkconfig sensu-api on
+
 EXPOSE 22 3000 4567 5671 15672
 
 CMD ["/usr/bin/supervisord"]
