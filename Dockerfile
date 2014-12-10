@@ -26,6 +26,8 @@ RUN cd / && echo $PWD && git init && git remote add origin https://github.com/ta
 # CentOS is bundled with git v1.7 which can't deal with [push] default = simple
 RUN cd / && sed -i.bak 's,\(.*=.*simple\),#\1,' .gitconfig
 
+RUN export TERM=xterm && emacs --daemon
+
 # Create user
 RUN useradd hiroakis
 RUN echo "hiroakis" | passwd hiroakis --stdin
