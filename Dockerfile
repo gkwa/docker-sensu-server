@@ -75,6 +75,8 @@ ADD files/supervisord.conf /etc/supervisord.conf
 RUN chkconfig sensu-server on
 RUN chkconfig sensu-api on
 RUN chkconfig uchiwa on
+RUN chkconfig rabbitmq-server on
+RUN chkconfig redis on
 
 RUN /etc/init.d/sshd start
 RUN /etc/init.d/sshd stop
