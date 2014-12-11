@@ -59,8 +59,8 @@ RUN rabbitmq-plugins enable rabbitmq_management
 ADD ./files/sensu.repo /etc/yum.repos.d/
 RUN yum install -y sensu
 ADD ./files/config.json /etc/sensu/
-ADD ./files/client.json /etc/sensu/conf.d
-ADD ./files/check_cron.json /etc/sensu/conf.d
+ADD ./files/client.json /etc/sensu/conf.d/
+ADD ./files/check_cron.json /etc/sensu/conf.d/
 RUN mkdir -p /etc/sensu/ssl
 RUN cp /joemiller.me-intro-to-sensu/client_cert.pem /etc/sensu/ssl/cert.pem
 RUN cp /joemiller.me-intro-to-sensu/client_key.pem /etc/sensu/ssl/key.pem
