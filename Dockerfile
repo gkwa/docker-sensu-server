@@ -72,18 +72,9 @@ RUN wget http://peak.telecommunity.com/dist/ez_setup.py;python ez_setup.py
 RUN easy_install supervisor
 ADD files/supervisord.conf /etc/supervisord.conf
 
-RUN chkconfig sensu-server on
-RUN chkconfig sensu-api on
-RUN chkconfig uchiwa on
-RUN chkconfig rabbitmq-server on
-RUN chkconfig redis on
-
-RUN /etc/init.d/sshd restart
-RUN /etc/init.d/sensu-server restart
-RUN /etc/init.d/sensu-api restart
-RUN /etc/init.d/uchiwa restart
+RUN /etc/init.d/sshd start
+RUN /etc/init.d/sshd stop
 
 EXPOSE 22 3000 4567 5671 15672
 
 CMD ["/usr/bin/supervisord"]
-
