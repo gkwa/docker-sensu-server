@@ -78,9 +78,10 @@ RUN chkconfig uchiwa on
 RUN chkconfig rabbitmq-server on
 RUN chkconfig redis on
 
-RUN /etc/init.d/sshd start
-RUN /etc/init.d/sshd stop
-RUN /etc/init.d/uchiwa start
+RUN /etc/init.d/sshd restart
+RUN /etc/init.d/sensu-server restart
+RUN /etc/init.d/sensu-api restart
+RUN /etc/init.d/uchiwa restart
 
 EXPOSE 22 3000 4567 5671 15672
 
