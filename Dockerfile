@@ -72,11 +72,13 @@ RUN wget http://peak.telecommunity.com/dist/ez_setup.py;python ez_setup.py
 RUN easy_install supervisor
 ADD files/supervisord.conf /etc/supervisord.conf
 
-RUN /etc/init.d/sshd start
-RUN /etc/init.d/sshd stop
-
 RUN chkconfig sensu-server on
 RUN chkconfig sensu-api on
+RUN chkconfig uchiwa on
+
+RUN /etc/init.d/sshd start
+RUN /etc/init.d/sshd stop
+RUN /etc/init.d/uchiwa start
 
 EXPOSE 22 3000 4567 5671 15672
 
