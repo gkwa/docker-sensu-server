@@ -1,0 +1,9 @@
+{
+  "rabbitmq": {
+    "host": "docker.streambox.com",
+    "port": 5772,
+    "vhost": "/sensu",
+    "user": "sensu",
+    "password": "password"
+  }
+}
