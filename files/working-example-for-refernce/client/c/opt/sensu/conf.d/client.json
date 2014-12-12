@@ -1,0 +1,17 @@
+{
+    "client": {
+	"name": "t3",
+	"address": "54.219.61.165",
+	"subscriptions": [
+	    "common",
+	    "webservers"
+	]
+    },
+
+    "keepalive": {
+	"thresholds": {
+	    "critical": 60
+	},
+	"refresh": 300
+    }
+}
