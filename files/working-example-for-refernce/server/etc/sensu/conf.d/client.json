@@ -1,0 +1,7 @@
+{
+    "client": {
+	"name": "t3.streambox.com",
+	"address": "54.219.61.165",
+	"subscriptions": [ "test", "webservers" ]
+    }
+}
